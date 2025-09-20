@@ -1,0 +1,480 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Arial', sans-serif;
+    background: #000;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+}
+
+/* Screen management */
+.screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.8s ease-in-out;
+}
+
+.screen.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Door Opening Animation */
+#door-screen {
+    background: #000;
+}
+
+.door-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.door-left-side, .door-right-side {
+    position: absolute;
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: transform 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: 3;
+}
+
+.door-left-side {
+    left: 0;
+    transform-origin: left center;
+}
+
+.door-right-side {
+    right: 0;
+    transform-origin: right center;
+}
+
+.door-left, .door-right {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+.door-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+.left-bottom-text, .right-bottom-text {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+}
+
+.bottom-text-image {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+}
+
+.invitation-behind-door {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 1s ease-in-out 0.5s;
+}
+
+.invitation-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+/* Door zoom animation */
+.door-zooming .door-container {
+    transform: scale(1.2);
+    transition: transform 0.8s ease-in-out;
+}
+
+.door-zooming .left-bottom-text,
+.door-zooming .right-bottom-text {
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+/* Door opening animation */
+.door-opening .door-left-side {
+    transform: translateX(-100%) rotateY(-90deg);
+}
+
+.door-opening .door-right-side {
+    transform: translateX(100%) rotateY(90deg);
+}
+
+.door-opening .left-bottom-text,
+.door-opening .right-bottom-text {
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+.door-opening .invitation-behind-door {
+    opacity: 1;
+}
+
+
+/* Invitation Screen */
+#invitation-screen {
+    background: #000;
+    flex-direction: column;
+    padding: 0;
+}
+
+.invitation-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.invitation-main-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+.invitation-overlay {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px 20px;
+    border-radius: 25px;
+    backdrop-filter: blur(10px);
+}
+
+.click-hint {
+    color: white;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+}
+
+/* Flipbook Screen - Full Screen */
+#flipbook-screen {
+    background: #000;
+    flex-direction: column;
+    padding: 0;
+}
+
+#flipbook {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    background: #000;
+}
+
+#flipbook .page {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    position: relative;
+}
+
+#flipbook .page img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+/* Flipbook Controls */
+.flipbook-controls {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 8px 15px;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 25px;
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.flipbook-controls:hover {
+    opacity: 1;
+}
+
+.control-btn {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.control-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.control-btn:active {
+    transform: scale(0.95);
+}
+
+.control-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    transform: none;
+}
+
+#page-info {
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    min-width: 50px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 4px 8px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+    .flipbook-controls {
+        bottom: 8px;
+        gap: 10px;
+        padding: 6px 12px;
+    }
+    
+    .control-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 14px;
+    }
+    
+    #page-info {
+        font-size: 10px;
+        padding: 3px 6px;
+        min-width: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .flipbook-controls {
+        bottom: 5px;
+        gap: 8px;
+        padding: 5px 10px;
+    }
+    
+    .control-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 12px;
+    }
+    
+    #page-info {
+        font-size: 9px;
+        padding: 2px 5px;
+        min-width: 35px;
+    }
+}
+
+/* Turn.js customizations */
+.turn-page {
+    background: #000 !important;
+}
+
+.turn-page img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+}
+
+/* Loading animation */
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+}
+
+.loading.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top: 3px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Page turn animations */
+.page-turned {
+    animation: pageTurn 0.8s ease-in-out;
+}
+
+@keyframes pageTurn {
+    0% { 
+        transform: scale(1) rotateY(0deg);
+        box-shadow: 0 0 0 rgba(0,0,0,0);
+    }
+    25% { 
+        transform: scale(1.05) rotateY(-5deg);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    50% { 
+        transform: scale(1.1) rotateY(-10deg);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+    75% { 
+        transform: scale(1.05) rotateY(-5deg);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    100% { 
+        transform: scale(1) rotateY(0deg);
+        box-shadow: 0 0 0 rgba(0,0,0,0);
+    }
+}
+
+/* Enhanced flipbook page animations */
+#flipbook .page {
+    transition: all 0.3s ease;
+    transform-style: preserve-3d;
+}
+
+#flipbook .page:hover {
+    transform: scale(1.02);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Turn.js enhanced animations */
+.turn-page {
+    background: #000 !important;
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+.turn-page img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    transition: all 0.3s ease !important;
+}
+
+/* Page flip sound visual feedback */
+.page-flipping {
+    animation: pageFlip 0.6s ease-in-out;
+}
+
+@keyframes pageFlip {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05) rotateY(-2deg); }
+    100% { transform: scale(1); }
+}
+
+/* Touch feedback */
+.control-btn:active {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+/* Hide scrollbars */
+::-webkit-scrollbar {
+    display: none;
+}
+
+html {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}

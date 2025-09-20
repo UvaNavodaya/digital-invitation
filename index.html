@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Digital Invitation</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/4.1.0/turn.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Door Opening Screen -->
+        <div id="door-screen" class="screen active">
+            <div class="door-container">
+                <div class="door-left-side">
+                    <div class="door-left" id="door-left">
+                        <img src="data/left_door.jpeg" alt="Door Left" class="door-image">
+                    </div>
+                    <div class="left-bottom-text" id="left-bottom-text">
+                        <img src="data/left_bottom_text.jpeg" alt="Left Bottom Text" class="bottom-text-image">
+                    </div>
+                </div>
+                <div class="door-right-side">
+                    <div class="door-right" id="door-right">
+                        <img src="data/right_door.jpeg" alt="Door Right" class="door-image">
+                    </div>
+                    <div class="right-bottom-text" id="right-bottom-text">
+                        <img src="data/right_bottom_text.jpeg" alt="Right Bottom Text" class="bottom-text-image">
+                    </div>
+                </div>
+                <div class="invitation-behind-door" id="invitation-behind">
+                    <img src="data/2.jpeg" alt="Invitation" class="invitation-image">
+                </div>
+            </div>
+        </div>
+
+        <!-- Invitation Screen -->
+        <div id="invitation-screen" class="screen">
+            <div class="invitation-container">
+                <img src="data/2.jpeg" alt="Invitation" class="invitation-main-image">
+                <div class="invitation-overlay">
+                    <p class="click-hint">Click anywhere to continue</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flipbook Screen -->
+        <div id="flipbook-screen" class="screen">
+            <div id="flipbook">
+                <div class="page">
+                    <img src="data/3.jpeg" alt="Day 1">
+                </div>
+                <div class="page">
+                    <img src="data/4.jpeg" alt="Day 2">
+                </div>
+                <div class="page">
+                    <img src="data/5.jpeg" alt="Day 3">
+                </div>
+                <div class="page">
+                    <img src="data/6.jpeg" alt="Day 4">
+                </div>
+                <div class="page">
+                    <img src="data/7.jpeg" alt="Day 5">
+                </div>
+                <div class="page">
+                    <img src="data/8.jpeg" alt="Day 6">
+                </div>
+                <div class="page">
+                    <img src="data/9.jpeg" alt="Day 7">
+                </div>
+                <div class="page">
+                    <img src="data/10.jpeg" alt="Day 8">
+                </div>
+                <div class="page">
+                    <img src="data/11.jpeg" alt="Day 9">
+                </div>
+                <div class="page">
+                    <img src="data/12.jpeg" alt="Day 10">
+                </div>
+                <div class="page">
+                    <img src="data/13.jpeg" alt="Day 11">
+                </div>
+                <div class="page">
+                    <img src="data/14.jpeg" alt="Day 12">
+                </div>
+                <div class="page">
+                    <img src="data/15.jpeg" alt="Day 13">
+                </div>
+            </div>
+            <div class="flipbook-controls">
+                <button id="back-to-door" class="control-btn back-btn" title="Back to Invitation">🏠</button>
+                <button id="prev-btn" class="control-btn">‹</button>
+                <span id="page-info">1 / 13</span>
+                <button id="next-flip-btn" class="control-btn">›</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
