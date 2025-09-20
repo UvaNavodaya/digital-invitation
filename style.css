@@ -248,6 +248,11 @@ html, body {
     background: #000;
     flex-direction: column;
     padding: 0;
+    display: none;
+}
+
+#flipbook-screen.active {
+    display: flex;
 }
 
 #flipbook {
@@ -391,10 +396,14 @@ html, body {
     }
 }
 
-/* Ensure invitation screen is hidden by default on mobile */
+/* Ensure invitation screen is hidden by default on mobile, but show when active */
 @media (max-width: 1023px) {
     #invitation-screen {
         display: none;
+    }
+    
+    #invitation-screen.active {
+        display: flex;
     }
 }
 

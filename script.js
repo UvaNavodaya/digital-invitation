@@ -85,20 +85,26 @@ function openDoor() {
         
         // Phase 3: Show invitation screen
         setTimeout(() => {
+            console.log('Transitioning to invitation screen...');
             doorScreen.classList.remove('active');
             invitationScreen.classList.add('active');
             currentScreen = 'invitation';
+            console.log('Invitation screen classes:', invitationScreen.className);
+            console.log('Current screen:', currentScreen);
         }, 1500);
     }, 800);
 }
 
 function goToFlipbook() {
+    console.log('Going to flipbook...');
     invitationScreen.classList.remove('active');
     flipbookScreen.classList.add('active');
     currentScreen = 'flipbook';
     
-    // Initialize flipbook
-    initializeFlipbook();
+    // Small delay to ensure screen transition completes
+    setTimeout(() => {
+        initializeFlipbook();
+    }, 100);
 }
 
 function goBackToInvitation() {
@@ -108,7 +114,17 @@ function goBackToInvitation() {
 }
 
 function initializeFlipbook() {
+    console.log('Initializing flipbook...');
     const flipbookElement = document.getElementById('flipbook');
+    console.log('Flipbook element:', flipbookElement);
+    console.log('jQuery available:', typeof $ !== 'undefined');
+    
+    // Always show the flipbook screen content, even if Turn.js fails
+    const flipbookScreen = document.getElementById('flipbook-screen');
+    if (flipbookScreen) {
+        flipbookScreen.style.display = 'flex';
+        flipbookScreen.style.background = '#000';
+    }
     
     if (flipbookElement && typeof $ !== 'undefined') {
         // Destroy existing flipbook if it exists
@@ -151,13 +167,38 @@ function initializeFlipbook() {
         console.warn('Turn.js not loaded, using fallback navigation');
         setupFallbackNavigation();
     }
+    
+    // Ensure flipbook screen is visible
+    setTimeout(() => {
+        const flipbookScreen = document.getElementById('flipbook-screen');
+        if (flipbookScreen) {
+            flipbookScreen.style.display = 'flex';
+            flipbookScreen.style.background = '#000';
+        }
+    }, 200);
 }
 
 function setupFallbackNavigation() {
+    console.log('Setting up fallback navigation...');
     const pages = document.querySelectorAll('#flipbook .page');
+    console.log('Found pages:', pages.length);
+    
     pages.forEach((page, index) => {
         page.style.display = index === 0 ? 'flex' : 'none';
+        page.style.width = '100%';
+        page.style.height = '100%';
+        page.style.justifyContent = 'center';
+        page.style.alignItems = 'center';
     });
+    
+    // Make sure the flipbook container is visible
+    const flipbookElement = document.getElementById('flipbook');
+    if (flipbookElement) {
+        flipbookElement.style.display = 'flex';
+        flipbookElement.style.flexDirection = 'column';
+        flipbookElement.style.width = '100vw';
+        flipbookElement.style.height = '100vh';
+    }
     
     updatePageInfo();
     updateControlButtons();
