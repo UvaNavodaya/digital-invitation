@@ -324,6 +324,15 @@ html, body {
     transform: scale(0.95);
 }
 
+.control-btn:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.control-btn::-moz-focus-inner {
+    border: 0;
+}
+
 .control-btn:disabled {
     opacity: 0.3;
     cursor: not-allowed;
@@ -341,6 +350,43 @@ html, body {
     padding: 4px 8px;
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Laptop/Desktop specific styles - Skip door, go straight to invitation */
+@media (min-width: 1024px) {
+    #door-screen {
+        display: none !important;
+    }
+    
+    #invitation-screen {
+        display: flex !important;
+        opacity: 1 !important;
+    }
+    
+    .invitation-container {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .invitation-main-image {
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+    }
+    
+    .flipbook-container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    .flipbook-controls {
+        bottom: 20px;
+    }
 }
 
 /* Mobile optimizations */
@@ -393,6 +439,28 @@ html, body {
     width: 100% !important;
     height: 100% !important;
     object-fit: contain !important;
+}
+
+/* Remove blue highlights from all clickable elements */
+* {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+button, .control-btn {
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+    border: none;
+}
+
+button:focus, .control-btn:focus {
+    outline: none;
+    box-shadow: none;
 }
 
 /* Loading animation */

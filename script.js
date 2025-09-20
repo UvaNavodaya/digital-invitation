@@ -46,10 +46,18 @@ function initializeApp() {
     // Preload images for better performance
     preloadImages();
     
-    // Auto-open door after 3 seconds
-    setTimeout(() => {
-        openDoor();
-    }, 3000);
+    // Check if we're on laptop/desktop (skip door animation)
+    if (window.innerWidth >= 1024) {
+        // Skip door animation for laptops, go straight to invitation
+        doorScreen.classList.remove('active');
+        invitationScreen.classList.add('active');
+        currentScreen = 'invitation';
+    } else {
+        // Auto-open door after 2 seconds for mobile
+        setTimeout(() => {
+            openDoor();
+        }, 2000);
+    }
     
     // Initialize flipbook when needed
     setTimeout(() => {
