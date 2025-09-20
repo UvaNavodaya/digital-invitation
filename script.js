@@ -27,9 +27,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function initializeApp() {
-    // Add click event to door
-    doorScreen.addEventListener('click', openDoor);
-    
     // Add click event to invitation screen
     invitationScreen.addEventListener('click', goToFlipbook);
     
@@ -48,6 +45,11 @@ function initializeApp() {
     
     // Preload images for better performance
     preloadImages();
+    
+    // Auto-open door after 3 seconds
+    setTimeout(() => {
+        openDoor();
+    }, 3000);
     
     // Initialize flipbook when needed
     setTimeout(() => {
