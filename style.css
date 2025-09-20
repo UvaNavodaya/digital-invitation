@@ -356,11 +356,13 @@ html, body {
 @media (min-width: 1024px) {
     #door-screen {
         display: none !important;
+        visibility: hidden !important;
     }
     
     #invitation-screen {
         display: flex !important;
         opacity: 1 !important;
+        visibility: visible !important;
     }
     
     .invitation-container {
@@ -386,6 +388,13 @@ html, body {
     
     .flipbook-controls {
         bottom: 20px;
+    }
+}
+
+/* Ensure invitation screen is hidden by default on mobile */
+@media (max-width: 1023px) {
+    #invitation-screen {
+        display: none;
     }
 }
 
